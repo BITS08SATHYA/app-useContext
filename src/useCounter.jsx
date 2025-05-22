@@ -1,7 +1,7 @@
 import {useState} from "react";
 
 
-function useCounter(){
+function useCounter(initialValue = 0){
 
     const [count, setCount] = useState(0);
 
@@ -13,7 +13,9 @@ function useCounter(){
         setCount(count - 1);
     }
 
-    return {count, increment, decrement};
+    const reset = () => setCount(initialValue);
+
+    return {count, increment, decrement, reset};
 
     // return (
     //     <div>
@@ -25,4 +27,4 @@ function useCounter(){
 
 }
 
-export default App
+export default useCounter;
