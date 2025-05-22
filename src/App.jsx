@@ -1,40 +1,48 @@
 import './App.css'
+import {createContext, useContext} from "react";
+
+// Use Context hook
+
+const ThemeContext = createContext('light');
 
 function App() {
 
-    const theme = 'dark';
+    // const theme = 'dark';
+
+    const themeContext = createContext();
 
   return (
         <div style={{ border: '2px solid black' , padding: '20px'}}>
             <h2>App (Parent)</h2>
-        <ComponentA theme={theme} />
+        <ComponentA />
         </div>
   );
 }
 
-function ComponentA({theme}){
+function ComponentA(){
     return (
         <div style={{ border: '2px solid black' , padding: '20px'}}>
             <h2>ComponentA (Child)</h2>
-            <ComponentB theme={theme} />
+            <ComponentB />
         </div>
     );
 }
 
-function ComponentB({theme}){
+function ComponentB(){
     return (
         <div style={{ border: '2px solid black' , padding: '20px'}}>
             <h2>ComponentB (Grand Child)</h2>
-            <ThemedComponent theme={theme} />
+            <ThemedComponent />
         </div>
     );
 }
 
-function ThemedComponent({theme}){
+function ThemedComponent(){
+    const theme = useContext(ThemeContext);
     return (
         <div style={{ border: '2px solid black' , padding: '20px'}}>
             <h2>ThemedComponent (Great Grand Child)</h2>
-            <div>The current theme is: {theme}</div>
+            <div>The current theme is: {theme} </div>
         </div>
     );
 }
