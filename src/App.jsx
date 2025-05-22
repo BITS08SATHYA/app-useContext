@@ -1,35 +1,42 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+
+    const theme = 'dark';
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+        <div style={{ border: '2px solid black' , padding: '20px'}}>
+            <h2>App (Parent)</h2>
+        <ComponentA theme={theme} />
+        </div>
+  );
+}
+
+function ComponentA({theme}){
+    return (
+        <div style={{ border: '2px solid black' , padding: '20px'}}>
+            <h2>ComponentA (Child)</h2>
+            <ComponentB theme={theme} />
+        </div>
+    );
+}
+
+function ComponentB({theme}){
+    return (
+        <div style={{ border: '2px solid black' , padding: '20px'}}>
+            <h2>ComponentB (Grand Child)</h2>
+            <ThemedComponent theme={theme} />
+        </div>
+    );
+}
+
+function ThemedComponent({theme}){
+    return (
+        <div style={{ border: '2px solid black' , padding: '20px'}}>
+            <h2>ThemedComponent (Great Grand Child)</h2>
+            <div>The current theme is: {theme}</div>
+        </div>
+    );
 }
 
 export default App
